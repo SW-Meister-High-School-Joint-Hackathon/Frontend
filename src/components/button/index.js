@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-const Button = ({ onClick, icon, text, selection }) => {
+const Button = ({ onClick, icon, text, selection, state }) => {
   return (
-    <Sbutton onClick={onClick}>
+    <Sbutton onClick={onClick} style={selection === state ? { border: '2px solid #1DF659' } : { border: 'none' }}>
       {icon}
       <p>{text}</p>
     </Sbutton>
@@ -14,7 +14,7 @@ export default Button;
 const Sbutton = styled.button`
   width: 348px;
   height: 87px;
-
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   background: #071314;
   border-radius: 5px;
   padding: 21px 18px;
@@ -22,7 +22,7 @@ const Sbutton = styled.button`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 116px;
+  justify-content: space-between;
   > p {
     color: #fff;
     text-align: center;
