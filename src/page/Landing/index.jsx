@@ -236,7 +236,6 @@ const Landing = () => {
     //  const configuration = {
     //    apiKey: await getOpenAiToken(),
     //  };
-    setIsLoading(true);
 
     axios.post("http://52.78.216.172:5001/match/prediction", {
       blueTeams: [1, 10, -1, 12, 13],
@@ -325,7 +324,7 @@ const Landing = () => {
     if (gptMessage !== '' && model != '') {
       setIsLoading(false);
     }
-  }, [gptMessage, setIsLoading]);
+  }, [gptMessage, model]);
 
   return (
     <Body>
@@ -347,7 +346,7 @@ const Landing = () => {
           position: 'relative',
         }}
       />
-      <Title marginTop="120px">🦾 경기 전체 한 눈에 보기</Title>
+      <Title style={{marginTop: "200px"}}>🦾 경기 전체 한 눈에 보기</Title>
       <Back3>
         <Gro>
           <Time type="text" onChange={(e)=>(setTime1(e.target.value))} placeholder="분"></Time>
@@ -479,7 +478,7 @@ const Landing = () => {
           </TestButton>
           <Result>
             {/* <img src={AI} alt="error" style={{ marginTop: '3%' }} /> */}
-            <Gpt>{isLoading ? '' : `예측 결과, 해당 경기의 결과는 ${model?.win_percent+rand}%의 승리로 예측됩니다.`}</Gpt>
+            <Gpt>{isLoading ? '버튼을 누르고 기다리세요' : `예측 결과, 해당 경기의 결과는 ${model?.win_percent+rand}%의 승리로 예측됩니다.`}</Gpt>
             <Gpt>{isLoading ? "" : gptMessage}</Gpt>
             {/* <Gpt>{model?.accuracy}</Gpt>
             <Gpt>{model?.winner}</Gpt> */}
@@ -494,7 +493,7 @@ export default Landing;
 
 const Body = styled.div`
   width: 100%;
-  height: auto;
+  height: 3000px;
   padding: 50px 0;
   background: #071314;
 
