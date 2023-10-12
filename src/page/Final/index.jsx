@@ -11,6 +11,9 @@ const Final = () => {
 
   const blueA = [8,10,10,13,11];
   const redA = [3,4,5,5,7];
+
+  const blueM = [252,182,219,264,30];
+  const redM = [201,164,243,234,27];
   
   const [blueTeamData, setBlueTeamData] = useState([]);
   const [redTeamData, setRedTeamData] = useState([]);
@@ -62,7 +65,7 @@ const Final = () => {
               <td>{blueA[index]}</td>
               <td>{data.totalDamageDone}</td>
               <td>{data.totalDamageTaken}</td>
-              <td>{data.totalMinionKill}</td>
+              <td>{redM[index]}</td>
               <td>{data.currentGold}</td>
               <td>{data.totalGold}</td>
             </tr>
@@ -76,7 +79,7 @@ const Final = () => {
               <td>{blueA[index]}</td>
               <td>{data.totalDamageDone}</td>
               <td>{data.totalDamageTaken}</td>
-              <td>{data.totalMinionKill}</td>
+              <td>{blueM[index]}</td>
               <td>{data.currentGold}</td>
               <td>{data.totalGold}</td>
             </tr>

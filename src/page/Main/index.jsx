@@ -85,7 +85,7 @@ export default Main;
 
 const Body = styled.div`
   width: 100%;
-  height: auto;
+  height: 1700px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
