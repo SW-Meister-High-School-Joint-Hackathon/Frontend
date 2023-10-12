@@ -10,12 +10,12 @@ const Final = () => {
   const blueD = [1, 2, 3, 2, 3];
   const redD = [3, 3, 2, 5, 6];
 
-  const blueA = [8, 10, 10, 13, 11];
-  const redA = [3, 4, 5, 5, 7];
+  const blueA = [8,10,10,13,11];
+  const redA = [3,4,5,5,7];
 
-  const blueM = [252, 182, 219, 264, 30];
-  const redM = [201, 164, 243, 234, 27];
-
+  const blueM = [252,182,219,264,30];
+  const redM = [201,164,243,234,27];
+  
   const [blueTeamData, setBlueTeamData] = useState([]);
   const [redTeamData, setRedTeamData] = useState([]);
   const [loading, setLoading] = useState(true);

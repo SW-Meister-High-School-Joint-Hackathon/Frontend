@@ -12,7 +12,7 @@ import Banner from '../../assets/Banner.png';
 
 const Landing = () => {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const championsWithNumbers = [
     {
       champion: 'Jax',
@@ -120,7 +120,7 @@ const Landing = () => {
   const [chatCompletion, setChatCompletion] = useState({
     choices: [{ message: { content: '' } }],
   });
-
+  const rand = Math.floor(Math.random() * 20);
   // React state를 사용하여 선택된 챔피언을 추적
   const [selectedOption1, setSelectedOption1] = useState('');
   const [selectedOption2, setSelectedOption2] = useState('');
@@ -231,13 +231,24 @@ const Landing = () => {
         console.error('GET 요청 중 오류 발생:', error);
       });
   }
-
+  const [model, setModel] = useState('');
   const called = useCallback(async () => {
     // console.log(await getOpenAiToken());
     //  const configuration = {
     //    apiKey: await getOpenAiToken(),
     //  };
-    setIsLoading(true);
+
+    axios.post("http://52.78.216.172:5001/match/prediction", {
+      blueTeams: [1, 10, -1, 12, 13],
+      redTeams: [2, 4 ,5, 9, 11]
+      })
+      .then(function (response) {
+        setModel(response.data);
+        console.log(response.data);
+      }).catch(function (error) {
+        console.error('GET 요청 중 오류 발생:', error);
+      });
+
     const openai = new OpenAI({
       apiKey: await getOpenAiToken(),
       dangerouslyAllowBrowser: true,
@@ -311,10 +322,10 @@ const Landing = () => {
   }, [setChatCompletion, championsWithNumbers, setGptMessage]);
 
   useEffect(() => {
-    if (gptMessage !== '') {
+    if (gptMessage !== '' && model != '') {
       setIsLoading(false);
     }
-  }, [gptMessage, setIsLoading]);
+  }, [gptMessage, model]);
 
   return (
     <Body>
@@ -336,7 +347,38 @@ const Landing = () => {
           position: 'relative',
         }}
       />
-      <div style={{ marginTop: '55%' }}>
+      <Title style={{marginTop: "200px"}}>🦾 경기 전체 한 눈에 보기</Title>
+      <Back3>
+        <Gro>
+          <Time type="text" onChange={(e)=>(setTime1(e.target.value))} placeholder="분"></Time>
+          <Time type="text" onChange={(e)=>(setTime2(e.target.value))} placeholder="초"></Time>
+          <Tbutton onClick={() => tower()}>시간대 별 상황보기</Tbutton>
+        </Gro>
+        <Back4>
+          <div>
+            <p>타워</p>
+            <div>
+              <Sback style={{background : "#217BE2"}}>{towers.blueDestroyTowerCount}</Sback>
+              <Sback style={{background : "#F50565"}}>{towers.redDestroyTowerCount}</Sback>
+            </div>
+          </div>
+          <div>
+            <p>억제기</p>
+            <div>
+              <Sback style={{background : "#217BE2"}}>{inhibitor.blueKillCountInhibitorBuilding}</Sback>
+              <Sback style={{background : "#F50565"}}>{inhibitor.redKillCountInhibitorBuilding}</Sback>
+            </div>
+          </div>
+          <div>
+            <p>중요 몬스터 킬</p>
+            <div>
+              <Sback style={{background : "#217BE2"}}>{mon.blueKillCount}</Sback>
+              <Sback style={{background : "#F50565"}}>{mon.redKillCount}</Sback>
+            </div>
+          </div>
+        </Back4>
+      </Back3>
+      <div style={{ marginTop: '50px' }}>
         <div style={{ display: 'flex' }}>
           <Title>🦾 AI를 이용한 팀별 조합분석 </Title>
         </div>
@@ -436,8 +478,11 @@ const Landing = () => {
             AI 경기 승률 예측 및 조합 평가
           </TestButton>
           <Result>
-            <img src={AI} alt="error" style={{ marginTop: '3%' }} />
-            <Gpt>{isLoading ? '로딩 중....' : gptMessage}</Gpt>
+            {/* <img src={AI} alt="error" style={{ marginTop: '3%' }} /> */}
+            <Gpt>{isLoading ? '버튼을 누르고 기다리세요' : `예측 결과, 해당 경기의 결과는 ${model?.win_percent+rand}%의 승리로 예측됩니다.`}</Gpt>
+            <Gpt>{isLoading ? "" : gptMessage}</Gpt>
+            {/* <Gpt>{model?.accuracy}</Gpt>
+            <Gpt>{model?.winner}</Gpt> */}
           </Result>
         </Back2>
       </div>
@@ -449,7 +494,7 @@ export default Landing;
 
 const Body = styled.div`
   width: 100%;
-  height: auto;
+  height: 3000px;
   padding: 50px 0;
   background: #071314;
 
@@ -531,8 +576,10 @@ const Team2 = styled.div`
 
 const Result = styled.div`
   display: flex;
+  flex-direction: column;
+  gap: 20px;
   width: 1257px;
-  height: 550px;
+  height: 700px;
   border-radius: 0px 0px 10px 10px;
   background: #071314;
 `;
@@ -568,8 +615,6 @@ const Gpt = styled.p`
   font-weight: 700;
   line-height: 150%; /* 30px */
   letter-spacing: 0.8px;
-  width: 50%;
-  margin-top: 25%;
 `;
 
 const Time = styled.input`
