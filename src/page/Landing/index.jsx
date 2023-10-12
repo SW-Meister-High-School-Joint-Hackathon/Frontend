@@ -8,6 +8,7 @@ import OpenAI from 'openai';
 import { useNavigate } from 'react-router-dom';
 import teamIngfo from '../../assets/temaInfo.png';
 import AI from '../../assets/AI.png';
+import Banner from '../../assets/Banner.png';
 
 const Landing = () => {
   const navigate = useNavigate();

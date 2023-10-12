@@ -32,7 +32,9 @@ const Main = () => {
 
   return (
     <Body>
-      {selectedChart}
+      <div style={{ marginTop: '3%', marginLeft: '-4%', marginRight: '3%' }}>
+        {selectedChart}
+      </div>
       <ButtonArea>
         <Button
           onClick={() => {
@@ -103,6 +105,7 @@ const ButtonArea = styled.div`
   flex-direction: column;
   gap: 14px;
   margin-right: 160px;
+  margin-top: 3%;
 `;
 
 const FinalButton = styled.button`
@@ -125,4 +128,5 @@ const FinalButton = styled.button`
   font-weight: 700;
   line-height: 150%; /* 30px */
   letter-spacing: 0.8px;
+  margin-bottom: 20%;
 `;
