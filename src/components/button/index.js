@@ -2,7 +2,14 @@ import styled from 'styled-components';
 
 const Button = ({ onClick, icon, text, selection, state }) => {
   return (
-    <Sbutton onClick={onClick} style={selection === state ? { border: '2px solid #1DF659' } : { border: 'none' }}>
+    <Sbutton
+      onClick={onClick}
+      style={
+        selection === state
+          ? { border: '2px solid #1DF659' }
+          : { border: 'none' }
+      }
+    >
       {icon}
       <p>{text}</p>
     </Sbutton>
