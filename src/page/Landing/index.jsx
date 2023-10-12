@@ -238,8 +238,8 @@ const Landing = () => {
     //  };
 
     axios.post("http://52.78.216.172:5001/match/prediction", {
-      blueTeams: [1, 10, -1, 12, 13],
-      redTeams: [2, 4 ,5, 9, 11]
+      blueTeams: [selectedOption1, selectedOption2, selectedOption3, selectedOption4, selectedOption5],
+      redTeams: [selectedOption6, selectedOption7 ,selectedOption8, selectedOption9, selectedOption10]
       })
       .then(function (response) {
         setModel(response.data);
@@ -478,7 +478,7 @@ const Landing = () => {
           </TestButton>
           <Result>
             {/* <img src={AI} alt="error" style={{ marginTop: '3%' }} /> */}
-            <Gpt>{isLoading ? '버튼을 누르고 기다리세요' : `예측 결과, 해당 경기의 결과는 ${model?.win_percent+rand}%의 승리로 예측됩니다.`}</Gpt>
+            <Gpt>{isLoading ? '버튼을 누르고 기다리세요' : `예측 결과, 해당 경기의 결과는 ${model?.win_percent}%의 승리로 예측됩니다.`}</Gpt>
             <Gpt>{isLoading ? "" : gptMessage}</Gpt>
             {/* <Gpt>{model?.accuracy}</Gpt>
             <Gpt>{model?.winner}</Gpt> */}
