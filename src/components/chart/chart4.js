@@ -39,7 +39,7 @@ const Chart4 = () => {
         </Title>
         <Text>각 플레이 팀의 중요 몬스터 킬 수를 나타냅니다.</Text>
         <DIV>
-          <BarChart labels={["blue", "red"]} pdata={[data.blueKillCount, data.redKillCount]}/>
+          <BarChart labels={["blue", "red"]} pdata={[data.blueKillCount, data.redKillCount]} color={["#227BE2","#F50564"]}/>
         </DIV>
       </Backgound>
     </BackArea>

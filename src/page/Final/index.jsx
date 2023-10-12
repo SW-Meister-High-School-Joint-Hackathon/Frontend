@@ -55,7 +55,7 @@ const Final = () => {
           </tr>
           {blueTeamData.map((data, index) => (
             <tr>
-              <td>blue</td>
+              <td style={{background: "#227BE2"}}>blue</td>
               <td>{data.personId == 1 ? "Kiin" : data.personId == 2 ? "Cuzz" : data.personId == 3 ? "Bdd" : data.personId == 4 ? "Aiming" : data.personId == 5 ? "Lehends" :  data.personId == 6 ? "Clear" : data.personId == 7 ? "Willer" : data.personId == 8 ? "Clozer" :  data.personId == 9 ? "Teddy" : "Kael"}</td>
               <td>{blueK[index]}</td>
               <td>{blueD[index]}</td>
@@ -69,7 +69,7 @@ const Final = () => {
           ))}
           {redTeamData.map((data, index) => (
             <tr>
-              <td>red</td>
+              <td style={{background: "#F50564"}}>red</td>
               <td>{data.personId == 1 ? "Kiin" : data.personId == 2 ? "Cuzz" : data.personId == 3 ? "Bdd" : data.personId == 4 ? "Aiming" : data.personId == 5 ? "Lehends" :  data.personId == 6 ? "Clear" : data.personId == 7 ? "Willer" : data.personId == 8 ? "Clozer" :  data.personId == 9 ? "Teddy" : "Kael"}</td>
               <td>{redK[index]}</td>
               <td>{blueD[index]}</td>
@@ -95,12 +95,13 @@ const Body = styled.div`
   flex-direction: row;
   justify-content: space-between;
   padding-top: 24px;
+
+  background: #0d2527;
 `;
 
 const Table = styled.table`
-  width: 100%;
+  width: 100vw;
   height: auto;
-  border: solid 1px white;
   background: #000;
   color: #FFF;
   font-family: Pretendard;
@@ -112,6 +113,6 @@ const Table = styled.table`
   
   th, td {
     text-align: center;
-    border: solid 1px white;
+    padding: 38px 10px;
   }
 `;

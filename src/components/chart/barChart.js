@@ -40,7 +40,7 @@ function BarChart({labels, pdata, color}) {
         },
       },
     });
-  }, [labels, pdata]);
+  }, [labels, pdata, color]);
 
   return <DIV><canvas ref={chartRef} /></DIV>;
 }

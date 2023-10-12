@@ -13,7 +13,7 @@ import Chart4 from '../../components/chart/chart4';
 import { useNavigate } from "react-router-dom";
 
 const Main = () => {
-  const [select, setSelect] = useState(0);
+  const [select, setSelect] = useState(1);
   const navigate = useNavigate();
 
   // 선택된 차트를 렌더링할 변수
@@ -85,10 +85,13 @@ export default Main;
 
 const Body = styled.div`
   width: 100%;
+  height: auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding-top: 24px;
+
+  background: #0d2527;
 `;
 
 const ButtonArea = styled.div`

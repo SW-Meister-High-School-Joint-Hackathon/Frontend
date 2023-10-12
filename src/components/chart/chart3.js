@@ -32,7 +32,7 @@ const Chart3 = () => {
         </Title>
         <Text>각 플레이 팀의 억제기 파괴 횟수를 나타냅니다.</Text>
         <DIV>
-          <BarChart labels={['blue', 'red']} pdata={[data.blueKillCountInhibitorBuilding, data.redKillCountInhibitorBuilding]} />
+          <BarChart labels={['blue', 'red']} pdata={[data.blueKillCountInhibitorBuilding, data.redKillCountInhibitorBuilding]} color={["#227BE2","#F50564"]} />
         </DIV>
       </Backgound>
     </BackArea>

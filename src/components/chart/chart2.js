@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import BarChart from './barChart';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { color } from 'd3';
 
 const Chart2 = () => {
   const [data, setData] = useState({
@@ -32,7 +33,7 @@ const Chart2 = () => {
         </Title>
         <Text>각 플레이 팀의 타워 파괴 수를 나타냅니다.</Text>
         <DIV>
-        <BarChart labels={['blue', 'red']} pdata={[data.blueDestroyTowerCount, data.redDestroyTowerCount]} />
+        <BarChart labels={['blue', 'red']} pdata={[data.blueDestroyTowerCount, data.redDestroyTowerCount]} color={["#227BE2","#F50564"]} />
         </DIV>
       </Backgound>
     </BackArea>
