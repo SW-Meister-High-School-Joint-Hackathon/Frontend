@@ -1,7 +1,28 @@
 import styled from 'styled-components';
 import BarChart from './barChart';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const Chart = () => {
+const Chart2 = () => {
+  const [data, setData] = useState({
+    blueDestroyTowerCount: 0,
+    redDestroyTowerCount: 0,
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // GET 요청 보내기
+    axios
+      .get('https://daitda.jeongho.dev/data/tower?timeStamp=2000000')
+      .then((response) => {
+        // 서버로부터 받은 데이터를 처리
+        setData(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('GET 요청 중 오류 발생:', error);
+      });
+  }, []);
   return (
     <BackArea>
       <Backgound>
@@ -9,26 +30,16 @@ const Chart = () => {
           <SP1>|</SP1>
           <SP2>팀별 타워 파괴 횟수</SP2>
         </Title>
-        <Text>각 플레이 팀의 킬 수를 나타냅니다.</Text>
+        <Text>각 플레이 팀의 타워 파괴 수를 나타냅니다.</Text>
         <DIV>
-            <BarChart />
-        </DIV>
-      </Backgound>
-      <Backgound>
-        <Title>   
-          <SP1>|</SP1>
-          <SP2>선수별 타워 파괴 횟수</SP2>
-        </Title>
-        <Text>각 플레이 팀의 킬 수를 나타냅니다.</Text>
-        <DIV>
-            <BarChart />
+        <BarChart labels={['blue', 'red']} pdata={[data.blueDestroyTowerCount, data.redDestroyTowerCount]} />
         </DIV>
       </Backgound>
     </BackArea>
   );
 };
 
-export default Chart;
+export default Chart2;
 
 const Backgound = styled.div`
   width: 953px;
@@ -36,7 +47,7 @@ const Backgound = styled.div`
   border-radius: 5px;
   background: #071314;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  margin-left: 90px;
+  margin-left: 140px;
 
   display: flex;
   flex-direction: column;

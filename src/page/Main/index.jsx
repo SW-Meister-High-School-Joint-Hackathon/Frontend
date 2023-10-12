@@ -5,13 +5,34 @@ import Home from '../../assets/svg/home';
 import Location from '../../assets/svg/location';
 import Face from '../../assets/svg/face';
 import { useState } from 'react';
-import Chart from '../../components/chart/chart';
+import Image from '../../assets/img2.png';
+import Chart1 from '../../components/chart/chart1';
+import Chart2 from '../../components/chart/chart2';
+import Chart3 from '../../components/chart/chart3';
+import Chart4 from '../../components/chart/chart4';
+import { useNavigate } from "react-router-dom";
 
 const Main = () => {
   const [select, setSelect] = useState(0);
+  const navigate = useNavigate();
+
+  // 선택된 차트를 렌더링할 변수
+  let selectedChart;
+
+  // select 상태에 따라 선택된 차트를 설정
+  if (select === 1) {
+    selectedChart = <Chart1 />;
+  } else if (select === 2) {
+    selectedChart = <Chart2 />;
+  } else if (select === 3){
+    selectedChart = <Chart3 />;
+  } else{
+    selectedChart = <Chart4 />;
+  }
+
   return (
     <Body>
-      <Chart />
+      {selectedChart}
       <ButtonArea>
         <Button
           onClick={() => {
@@ -49,6 +70,12 @@ const Main = () => {
           selection={4}
           state={select}
         />
+        <div></div>
+         <img width="348px" height="245px" src={Image} alt="img"></img>
+         <div></div>
+         <FinalButton onClick={
+            ()=>{navigate("/mainh");}
+         }>Final results</FinalButton>
       </ButtonArea>
     </Body>
   );
@@ -56,7 +83,7 @@ const Main = () => {
 
 export default Main;
 
-const Body = styled.header`
+const Body = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -68,6 +95,23 @@ const ButtonArea = styled.div`
   display: flex;
   flex-direction: column;
   gap: 14px;
-  margin-right: 90px;
+  margin-right: 160px;
 `;
 
+const FinalButton = styled.button`
+  width: 194px;
+  height: 61px; 
+
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(29, 246, 89, 0.70) 0%, rgba(47, 108, 113, 0.70) 100%);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  color: #FFF;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 30px */
+  letter-spacing: 0.8px;
+`;

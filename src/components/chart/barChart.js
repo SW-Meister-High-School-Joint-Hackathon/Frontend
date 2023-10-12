@@ -2,10 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Chart from 'chart.js/auto';
 
-function BarChart(props) {
+function BarChart({labels, pdata, color}) {
   const chartRef = useRef();
   const chartInstance = useRef(null);
-
   useEffect(() => {
     const ctx = chartRef.current.getContext('2d');
 
@@ -19,12 +18,12 @@ function BarChart(props) {
 
     // 데이터 준비
     const data = {
-      labels: ['항목1', '항목2', '항목3', '항목4', '항목5'],
+      labels: labels,
       datasets: [
         {
           label: '막대 그래프',
-          data: [2, 4, 4, 1, 1],
-          backgroundColor: 'steelblue',
+          data: pdata,
+          backgroundColor: color ?? 'steelblue',
         },
       ],
     };
@@ -41,7 +40,7 @@ function BarChart(props) {
         },
       },
     });
-  }, []);
+  }, [labels, pdata]);
 
   return <DIV><canvas ref={chartRef} /></DIV>;
 }
