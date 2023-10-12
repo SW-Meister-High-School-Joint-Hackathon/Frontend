@@ -39,7 +39,11 @@ const Chart1 = () => {
         </Title>
         <Text>각 팀의 킬 수를 나타냅니다.</Text>
         <DIV>
-          <BarChart labels={['blue', 'red']} pdata={[19, 11]} color={["#227BE2","#F50564"]}/>
+          <BarChart
+            labels={['blue', 'red']}
+            pdata={[19, 11]}
+            color={['#227BE2', '#F50564']}
+          />
         </DIV>
       </Backgound>
       <Backgound2>
@@ -50,29 +54,13 @@ const Chart1 = () => {
         <Text>각 팀에 속한 선수별 킬 수를 나타냅니다.</Text>
         <DIV>
           <BarChart
-            labels={[
-              'Kiin',
-              'Cuzz',
-              'Bdd',
-              'Aiming',
-              'Lehends'
-            ]}
-
-            pdata={[2,8,7,0,2]}
-
+            labels={['Kiin', 'Cuzz', 'Bdd', 'Aiming', 'Lehends']}
+            pdata={[2, 8, 7, 0, 2]}
             color="#227BE2"
           />
           <BarChart
-            labels={[
-              'Clear',
-              'Willer',
-              'Clozer',
-              'Teddy',
-              'Kael',
-            ]}
-
-            pdata={[1,2,4,4,0]}
-
+            labels={['Clear', 'Willer', 'Clozer', 'Teddy', 'Kael']}
+            pdata={[1, 2, 4, 4, 0]}
             color="#F50564"
           />
         </DIV>

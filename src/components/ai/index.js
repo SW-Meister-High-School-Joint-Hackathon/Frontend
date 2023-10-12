@@ -124,13 +124,13 @@ const ChampionOptions = ({ onChange, value }) => {
 export default ChampionOptions;
 
 const Select = styled.select`
-  width: 221px;
-  height: 40px;
-
+  width: 200px;
+  height: 70px;
   border-radius: 10px;
   background: #071314;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-
+  border: none;
   color: white;
   font-size: 20px;
+  padding-left: 8px;
 `;

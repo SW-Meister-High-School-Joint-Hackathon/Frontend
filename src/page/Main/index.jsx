@@ -10,7 +10,7 @@ import Chart1 from '../../components/chart/chart1';
 import Chart2 from '../../components/chart/chart2';
 import Chart3 from '../../components/chart/chart3';
 import Chart4 from '../../components/chart/chart4';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const Main = () => {
   const [select, setSelect] = useState(1);
@@ -24,9 +24,9 @@ const Main = () => {
     selectedChart = <Chart1 />;
   } else if (select === 2) {
     selectedChart = <Chart2 />;
-  } else if (select === 3){
+  } else if (select === 3) {
     selectedChart = <Chart3 />;
-  } else{
+  } else {
     selectedChart = <Chart4 />;
   }
 
@@ -71,11 +71,15 @@ const Main = () => {
           state={select}
         />
         <div></div>
-         <img width="348px" height="245px" src={Image} alt="img"></img>
-         <div></div>
-         <FinalButton onClick={
-            ()=>{navigate("/mainh");}
-         }>Final results</FinalButton>
+        <img width="348px" height="245px" src={Image} alt="img"></img>
+        <div></div>
+        <FinalButton
+          onClick={() => {
+            navigate('/AllResult');
+          }}
+        >
+          Final results
+        </FinalButton>
       </ButtonArea>
     </Body>
   );
@@ -103,13 +107,17 @@ const ButtonArea = styled.div`
 
 const FinalButton = styled.button`
   width: 194px;
-  height: 61px; 
+  height: 61px;
 
   border-radius: 10px;
-  background: linear-gradient(180deg, rgba(29, 246, 89, 0.70) 0%, rgba(47, 108, 113, 0.70) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(29, 246, 89, 0.7) 0%,
+    rgba(47, 108, 113, 0.7) 100%
+  );
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Pretendard;
   font-size: 20px;
