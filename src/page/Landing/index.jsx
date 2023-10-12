@@ -1,11 +1,16 @@
 import Back from '../../assets/back.png';
+import Button from '../../assets/button.png';
 import styled from 'styled-components';
 import ChampionOptions from '../../components/ai';
 import { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import OpenAI from 'openai';
+import { useNavigate } from 'react-router-dom';
+import teamIngfo from '../../assets/temaInfo.png';
+import AI from '../../assets/AI.png';
 
 const Landing = () => {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const championsWithNumbers = [
     {
@@ -312,129 +317,129 @@ const Landing = () => {
 
   return (
     <Body>
-      <img src={Back} alt="backgorund" style={{ marginTop: '-50px' }} />
-      <Title>🦾 경기 전체 한 눈에 보기</Title>
-      <Back3>
-        <Gro>
-          <Time type="text" onChange={(e)=>(setTime1(e.target.value))} placeholder="분"></Time>
-          <Time type="text" onChange={(e)=>(setTime2(e.target.value))} placeholder="초"></Time>
-          <Tbutton onClick={() => tower()}>시간대 별 상황보기</Tbutton>
-        </Gro>
-        <Back4>
-          <div>
-            <p>타워</p>
-            <div>
-              <Sback style={{background : "#217BE2"}}>{towers.blueDestroyTowerCount}</Sback>
-              <Sback style={{background : "#F50565"}}>{towers.redDestroyTowerCount}</Sback>
-            </div>
+      <img
+        src={Back}
+        alt="backgorund"
+        style={{ marginTop: '-50px', position: 'absolute' }}
+      />
+      <img
+        src={Button}
+        alt="error"
+        onClick={() => {
+          navigate('/Main');
+        }}
+        style={{
+          width: '25%',
+          marginTop: '39.5%',
+          float: 'right',
+          position: 'relative',
+        }}
+      />
+      <div style={{ marginTop: '55%' }}>
+        <div style={{ display: 'flex' }}>
+          <Title>🦾 AI를 이용한 팀별 조합분석 </Title>
+        </div>
+        <Back2>
+          <img
+            src={teamIngfo}
+            alt="error"
+            style={{ width: '10%', marginLeft: '-73%', marginTop: '4%' }}
+          />
+          <div style={{ marginTop: '-2%', marginBottom: '3%' }}>
+            <Team1>
+              <Input>
+                <Champion>
+                  <p style={{ color: '#217BE2' }}>탑</p>
+                </Champion>
+                <ChampionOptions
+                  onChange={handleOption1Change}
+                  value={selectedOption1}
+                />
+              </Input>
+              <Input>
+                <Champion>
+                  <p style={{ color: '#217BE2' }}>정글</p>
+                </Champion>
+                <ChampionOptions
+                  onChange={handleOption2Change}
+                  value={selectedOption2}
+                />
+              </Input>
+              <Input>
+                <Champion>
+                  <p style={{ color: '#217BE2' }}>미드</p>
+                </Champion>
+                <ChampionOptions
+                  onChange={handleOption3Change}
+                  value={selectedOption3}
+                />
+              </Input>
+              <Input>
+                <Champion>
+                  <p style={{ color: '#217BE2' }}>바텀(원딜)</p>
+                </Champion>
+                <ChampionOptions
+                  onChange={handleOption4Change}
+                  value={selectedOption4}
+                />
+              </Input>
+              <Input>
+                <Champion>
+                  <p style={{ color: '#217BE2' }}>바텀(서폿)</p>
+                </Champion>
+                <ChampionOptions
+                  onChange={handleOption5Change}
+                  value={selectedOption5}
+                />
+              </Input>
+            </Team1>
+            <Team2>
+              <Input>
+                <Champion>탑</Champion>
+                <ChampionOptions
+                  onChange={handleOption6Change}
+                  value={selectedOption6}
+                />
+              </Input>
+              <Input>
+                <Champion>정글</Champion>
+                <ChampionOptions
+                  onChange={handleOption7Change}
+                  value={selectedOption7}
+                />
+              </Input>
+              <Input>
+                <Champion>미드</Champion>
+                <ChampionOptions
+                  onChange={handleOption8Change}
+                  value={selectedOption8}
+                />
+              </Input>
+              <Input>
+                <Champion>바텀(원딜)</Champion>
+                <ChampionOptions
+                  onChange={handleOption9Change}
+                  value={selectedOption9}
+                />
+              </Input>
+              <Input>
+                <Champion>바텀(서폿)</Champion>
+                <ChampionOptions
+                  onChange={handleOption10Change}
+                  value={selectedOption10}
+                />
+              </Input>
+            </Team2>
           </div>
-          <div>
-            <p>억제기</p>
-            <div>
-              <Sback style={{background : "#217BE2"}}>{inhibitor.blueKillCountInhibitorBuilding}</Sback>
-              <Sback style={{background : "#F50565"}}>{inhibitor.redKillCountInhibitorBuilding}</Sback>
-            </div>
-          </div>
-          <div>
-            <p>중요 몬스터 킬</p>
-            <div>
-              <Sback style={{background : "#217BE2"}}>{mon.blueKillCount}</Sback>
-              <Sback style={{background : "#F50565"}}>{mon.redKillCount}</Sback>
-            </div>
-          </div>
-        </Back4>
-      </Back3>
-      <Title>🦾 AI를 이용한 팀별 조합분석 </Title>
-      <Back2>
-        <Team1>
-          <Input>
-            <Champion>
-              <p style={{ color: '#217BE2' }}>탑</p>
-            </Champion>
-            <ChampionOptions
-              onChange={handleOption1Change}
-              value={selectedOption1}
-            />
-          </Input>
-          <Input>
-            <Champion>
-              <p style={{ color: '#217BE2' }}>정글</p>
-            </Champion>
-            <ChampionOptions
-              onChange={handleOption2Change}
-              value={selectedOption2}
-            />
-          </Input>
-          <Input>
-            <Champion>
-              <p style={{ color: '#217BE2' }}>미드</p>
-            </Champion>
-            <ChampionOptions
-              onChange={handleOption3Change}
-              value={selectedOption3}
-            />
-          </Input>
-          <Input>
-            <Champion>
-              <p style={{ color: '#217BE2' }}>바텀(원딜)</p>
-            </Champion>
-            <ChampionOptions
-              onChange={handleOption4Change}
-              value={selectedOption4}
-            />
-          </Input>
-          <Input>
-            <Champion>
-              <p style={{ color: '#217BE2' }}>바텀(서폿)</p>
-            </Champion>
-            <ChampionOptions
-              onChange={handleOption5Change}
-              value={selectedOption5}
-            />
-          </Input>
-        </Team1>
-        <Team2>
-          <Input>
-            <Champion>탑</Champion>
-            <ChampionOptions
-              onChange={handleOption6Change}
-              value={selectedOption6}
-            />
-          </Input>
-          <Input>
-            <Champion>정글</Champion>
-            <ChampionOptions
-              onChange={handleOption7Change}
-              value={selectedOption7}
-            />
-          </Input>
-          <Input>
-            <Champion>미드</Champion>
-            <ChampionOptions
-              onChange={handleOption8Change}
-              value={selectedOption8}
-            />
-          </Input>
-          <Input>
-            <Champion>바텀(원딜)</Champion>
-            <ChampionOptions
-              onChange={handleOption9Change}
-              value={selectedOption9}
-            />
-          </Input>
-          <Input>
-            <Champion>바텀(서폿)</Champion>
-            <ChampionOptions
-              onChange={handleOption10Change}
-              value={selectedOption10}
-            />
-          </Input>
-        </Team2>
-        <TestButton onClick={called}>AI 경기 승률 예측 및 조합 평가</TestButton>
-        <Result>
-          <Gpt>{isLoading ? '로딩 중....' : gptMessage}</Gpt>
-        </Result>
-      </Back2>
+          <TestButton onClick={called}>
+            AI 경기 승률 예측 및 조합 평가
+          </TestButton>
+          <Result>
+            <img src={AI} alt="error" style={{ marginTop: '3%' }} />
+            <Gpt>{isLoading ? '로딩 중....' : gptMessage}</Gpt>
+          </Result>
+        </Back2>
+      </div>
     </Body>
   );
 };
@@ -459,13 +464,13 @@ const Title = styled.div`
   font-style: normal;
   font-weight: 700;
   line-height: 70px; /* 140% */
-
-  margin: 50px 0 50px 134px;
+  margin-left: 4%;
+  margin-bottom: 2%;
 `;
 
 const Back2 = styled.div`
   width: 1400px;
-  height: 1000px;
+  height: 1150px;
 
   border-radius: 10px;
   background: #0d2527;
@@ -500,16 +505,17 @@ const Back3 = styled.div`
 const Champion = styled.div`
   color: #f50565;
   font-family: Open Sans;
-  font-size: 30px;
+  font-size: 25px;
   font-style: normal;
   font-weight: 700;
   line-height: 100%;
   letter-spacing: -0.3px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 const Input = styled.div`
-  padding: 30px;
+  padding: 20px;
+  padding-top: 60px;
 `;
 
 const Team1 = styled.div`
@@ -523,9 +529,9 @@ const Team2 = styled.div`
 `;
 
 const Result = styled.div`
+  display: flex;
   width: 1257px;
-  height: 600px;
-  background: #0d2527;
+  height: 550px;
   border-radius: 0px 0px 10px 10px;
   background: #071314;
 `;
@@ -561,6 +567,8 @@ const Gpt = styled.p`
   font-weight: 700;
   line-height: 150%; /* 30px */
   letter-spacing: 0.8px;
+  width: 50%;
+  margin-top: 25%;
 `;
 
 const Time = styled.input`
