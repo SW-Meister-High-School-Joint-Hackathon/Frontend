@@ -131,6 +131,8 @@ const Landing = () => {
   const [selectedOption8, setSelectedOption8] = useState('');
   const [selectedOption9, setSelectedOption9] = useState('');
   const [selectedOption10, setSelectedOption10] = useState('');
+  const [time1, setTime1] = useState("");
+  const [time2, setTime2] = useState("");
   const [gptMessage, setGptMessage] = useState('');
 
   // 선택 옵션의 변경을 처리하는 핸들러 함수
@@ -190,6 +192,43 @@ const Landing = () => {
       //응답 실패
       console.error(error);
     }
+  }
+  const [towers, setTowers] = useState({});
+  const [inhibitor, setInhibitor] = useState({});
+  const [mon, setMon] = useState({});
+  
+  async function tower() {
+    const milliseconds = (time1 * 60 + time2) * 10; // 초 단위의 시간을 밀리초 단위로 변환
+      //응답 성공
+      axios
+      .get(`https://daitda.jeongho.dev/data/tower?timeStamp=${milliseconds}`)
+      .then((response) => {
+        // 서버로부터 받은 데이터를 처리
+        setTowers(response.data);
+      })
+      .catch((error) => {
+        console.error('GET 요청 중 오류 발생:', error);
+      });
+
+      axios
+      .get(`https://daitda.jeongho.dev/data/inhibitor?timeStamp=${milliseconds}`)
+      .then((response) => {
+        // 서버로부터 받은 데이터를 처리
+        setInhibitor(response.data);
+      })
+      .catch((error) => {
+        console.error('GET 요청 중 오류 발생:', error);
+      });
+
+      axios
+      .get(`https://daitda.jeongho.dev/data/monster?timeStamp=${milliseconds}`)
+      .then((response) => {
+        // 서버로부터 받은 데이터를 처리
+        setMon(response.data);
+      })
+      .catch((error) => {
+        console.error('GET 요청 중 오류 발생:', error);
+      });
   }
 
   const called = useCallback(async () => {
@@ -444,6 +483,25 @@ const Back2 = styled.div`
   align-items: center;
 `;
 
+const Back3 = styled.div`
+  width: 1300px;
+  height: 400px;
+
+  border-radius: 10px;
+  background: #0d2527;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  margin: 20px auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 50px;
+
+  gap: 24px;
+`;
+
 const Champion = styled.div`
   color: #f50565;
   font-family: Open Sans;
@@ -511,4 +569,95 @@ const Gpt = styled.p`
   letter-spacing: 0.8px;
   width: 50%;
   margin-top: 25%;
+`;
+
+const Time = styled.input`
+  width: 160px;
+  height: 80px;
+
+  color: black;
+  font-size: 24px;
+`
+
+const Tbutton = styled.button`
+  width: 160px;
+  height: 80px;
+
+  border-radius: 10px;
+  background: linear-gradient(
+    180deg,
+    rgba(29, 246, 89, 0.7) 0%,
+    rgba(47, 108, 113, 0.7) 100%
+  );
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  color: #fff;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 30px */
+  letter-spacing: 0.8px;
+`;
+
+const Gro = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+`;
+
+const Back4 = styled.div`
+  width: 1222px;
+  height: 280px;
+  flex-shrink: 0;
+
+  border-radius: 10px;  
+  background: #071314;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  > div{
+    color: #FFF;
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 100%; /* 60px */
+    letter-spacing: -0.6px;
+
+    > p{
+      margin-bottom: 10px;
+    }
+    > div{
+      gap: 15px;
+      display: flex;
+      flex-direction: row;
+    }
+  }
+`;
+
+const Sback = styled.div`
+  width: 153px;
+  height: 146px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #FFF;
+  text-align: center;
+  font-family: Open Sans;
+  font-size: 60px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 100%; /* 60px */
+  letter-spacing: -0.6px;
 `;

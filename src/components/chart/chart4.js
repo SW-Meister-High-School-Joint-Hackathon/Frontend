@@ -5,15 +5,10 @@ import axios from 'axios';
 
 const Chart4 = () => {
   const [data, setData] = useState({
-    blueKillSpecific: [
-      'RIFTHERALD',
-      'RIFTHERALD',
-      'FIRE_DRAGON',
-      'BARON_NASHOR',
-    ],
-    redKillSpecific: ['HEXTECH_DRAGON'],
-    blueKillCount: 4,
-    redKillCount: 1,
+    blueKillSpecific: [],
+    redKillSpecific: [],
+    blueKillCount: 0,
+    redKillCount: 0,
   });
   const [setLoading] = useState(true);
 
@@ -45,6 +40,8 @@ const Chart4 = () => {
             color={['#227BE2', '#F50564']}
           />
         </DIV>
+        <p>blue: {data.blueKillSpecific.map((killCount, index) => (killCount + ", "))}</p>
+        <p>red: {data.redKillSpecific}</p>
       </Backgound>
     </BackArea>
   );
@@ -62,6 +59,11 @@ const Backgound = styled.div`
 
   display: flex;
   flex-direction: column;
+  >p{
+    color: white;
+    font-size: 20px;
+    margin: 0 0 0 30px 30px;
+  }
 `;
 
 const BackArea = styled.div`
