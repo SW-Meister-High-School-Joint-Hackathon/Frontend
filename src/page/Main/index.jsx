@@ -11,6 +11,7 @@ import Chart2 from '../../components/chart/chart2';
 import Chart3 from '../../components/chart/chart3';
 import Chart4 from '../../components/chart/chart4';
 import { useNavigate } from 'react-router-dom';
+import Banner from '../../assets/Banner.png';
 
 const Main = () => {
   const [select, setSelect] = useState(1);
@@ -32,7 +33,9 @@ const Main = () => {
 
   return (
     <Body>
-      {selectedChart}
+      <div style={{ marginTop: '3%', marginLeft: '-4%', marginRight: '3%' }}>
+        {selectedChart}
+      </div>
       <ButtonArea>
         <Button
           onClick={() => {
@@ -103,6 +106,7 @@ const ButtonArea = styled.div`
   flex-direction: column;
   gap: 14px;
   margin-right: 160px;
+  margin-top: 3%;
 `;
 
 const FinalButton = styled.button`
@@ -125,4 +129,5 @@ const FinalButton = styled.button`
   font-weight: 700;
   line-height: 150%; /* 30px */
   letter-spacing: 0.8px;
+  margin-bottom: 20%;
 `;
