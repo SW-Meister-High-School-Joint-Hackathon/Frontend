@@ -11,7 +11,6 @@ import Chart2 from '../../components/chart/chart2';
 import Chart3 from '../../components/chart/chart3';
 import Chart4 from '../../components/chart/chart4';
 import { useNavigate } from 'react-router-dom';
-import Banner from '../../assets/Banner.png';
 
 const Main = () => {
   const [select, setSelect] = useState(1);
