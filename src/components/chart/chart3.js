@@ -8,7 +8,7 @@ const Chart3 = () => {
     blueKillCountInhibitorBuilding: 0,
     redKillCountInhibitorBuilding: 0,
   });
-  const [loading, setLoading] = useState(true);
+  const [setLoading] = useState(true);
 
   useEffect(() => {
     // GET 요청 보내기
@@ -32,7 +32,14 @@ const Chart3 = () => {
         </Title>
         <Text>각 플레이 팀의 억제기 파괴 횟수를 나타냅니다.</Text>
         <DIV>
-          <BarChart labels={['blue', 'red']} pdata={[data.blueKillCountInhibitorBuilding, data.redKillCountInhibitorBuilding]} color={["#227BE2","#F50564"]} />
+          <BarChart
+            labels={['blue', 'red']}
+            pdata={[
+              data.blueKillCountInhibitorBuilding,
+              data.redKillCountInhibitorBuilding,
+            ]}
+            color={['#227BE2', '#F50564']}
+          />
         </DIV>
       </Backgound>
     </BackArea>
