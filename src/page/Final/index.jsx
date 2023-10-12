@@ -6,15 +6,21 @@ const Final = () => {
   const blueK = [2, 8, 7, 0, 2];
   const redK = [0, 1, 2, 4, 4, 0];
 
-  const blueD = [1,2,3,2,3];
-  const redD = [3,3,2,5,6];
+  const blueD = [1, 2, 3, 2, 3];
+  const redD = [3, 3, 2, 5, 6];
 
+  const blueA = [8, 10, 10, 13, 11];
+  const redA = [3, 4, 5, 5, 7];
+
+<<<<<<< HEAD
   const blueA = [8,10,10,13,11];
   const redA = [3,4,5,5,7];
 
   const blueM = [252,182,219,264,30];
   const redM = [201,164,243,234,27];
   
+=======
+>>>>>>> 9e6a2934ececa1b1b025618dd511edce9c9dcbaa
   const [blueTeamData, setBlueTeamData] = useState([]);
   const [redTeamData, setRedTeamData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -58,8 +64,28 @@ const Final = () => {
           </tr>
           {blueTeamData.map((data, index) => (
             <tr>
-              <td style={{background: "#227BE2"}}>blue</td>
-              <td>{data.personId == 1 ? "Kiin" : data.personId == 2 ? "Cuzz" : data.personId == 3 ? "Bdd" : data.personId == 4 ? "Aiming" : data.personId == 5 ? "Lehends" :  data.personId == 6 ? "Clear" : data.personId == 7 ? "Willer" : data.personId == 8 ? "Clozer" :  data.personId == 9 ? "Teddy" : "Kael"}</td>
+              <td style={{ background: '#227BE2' }}>blue</td>
+              <td>
+                {data.personId == 1
+                  ? 'Kiin'
+                  : data.personId == 2
+                  ? 'Cuzz'
+                  : data.personId == 3
+                  ? 'Bdd'
+                  : data.personId == 4
+                  ? 'Aiming'
+                  : data.personId == 5
+                  ? 'Lehends'
+                  : data.personId == 6
+                  ? 'Clear'
+                  : data.personId == 7
+                  ? 'Willer'
+                  : data.personId == 8
+                  ? 'Clozer'
+                  : data.personId == 9
+                  ? 'Teddy'
+                  : 'Kael'}
+              </td>
               <td>{blueK[index]}</td>
               <td>{blueD[index]}</td>
               <td>{blueA[index]}</td>
@@ -72,8 +98,28 @@ const Final = () => {
           ))}
           {redTeamData.map((data, index) => (
             <tr>
-              <td style={{background: "#F50564"}}>red</td>
-              <td>{data.personId == 1 ? "Kiin" : data.personId == 2 ? "Cuzz" : data.personId == 3 ? "Bdd" : data.personId == 4 ? "Aiming" : data.personId == 5 ? "Lehends" :  data.personId == 6 ? "Clear" : data.personId == 7 ? "Willer" : data.personId == 8 ? "Clozer" :  data.personId == 9 ? "Teddy" : "Kael"}</td>
+              <td style={{ background: '#F50564' }}>red</td>
+              <td>
+                {data.personId == 1
+                  ? 'Kiin'
+                  : data.personId == 2
+                  ? 'Cuzz'
+                  : data.personId == 3
+                  ? 'Bdd'
+                  : data.personId == 4
+                  ? 'Aiming'
+                  : data.personId == 5
+                  ? 'Lehends'
+                  : data.personId == 6
+                  ? 'Clear'
+                  : data.personId == 7
+                  ? 'Willer'
+                  : data.personId == 8
+                  ? 'Clozer'
+                  : data.personId == 9
+                  ? 'Teddy'
+                  : 'Kael'}
+              </td>
               <td>{redK[index]}</td>
               <td>{blueD[index]}</td>
               <td>{blueA[index]}</td>
@@ -88,7 +134,7 @@ const Final = () => {
       </form>
     </Body>
   );
-}
+};
 
 export default Final;
 
@@ -106,15 +152,16 @@ const Table = styled.table`
   width: 100vw;
   height: auto;
   background: #000;
-  color: #FFF;
+  color: #fff;
   font-family: Pretendard;
   font-size: 22px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
   letter-spacing: 0.88px;
-  
-  th, td {
+
+  th,
+  td {
     text-align: center;
     padding: 38px 10px;
   }

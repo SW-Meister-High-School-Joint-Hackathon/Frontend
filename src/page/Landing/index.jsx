@@ -111,7 +111,9 @@ const Landing = () => {
     // 나머지 챔피언 데이터 추가
   ];
   // OpenAI API 호출
-  const [chatCompletion, setChatCompletion] = useState({ choices: [{ message: { content: "" } }] });
+  const [chatCompletion, setChatCompletion] = useState({
+    choices: [{ message: { content: '' } }],
+  });
 
   // React state를 사용하여 선택된 챔피언을 추적
   const [selectedOption1, setSelectedOption1] = useState('');
@@ -126,6 +128,7 @@ const Landing = () => {
   const [selectedOption10, setSelectedOption10] = useState('');
   const [time1, setTime1] = useState("");
   const [time2, setTime2] = useState("");
+  const [gptMessage, setGptMessage] = useState('');
 
   // 선택 옵션의 변경을 처리하는 핸들러 함수
   const handleOption1Change = (event) => {
@@ -223,7 +226,7 @@ const Landing = () => {
       });
   }
 
-  const called = async () => {
+  const called = useCallback(async () => {
     // console.log(await getOpenAiToken());
     //  const configuration = {
     //    apiKey: await getOpenAiToken(),
@@ -295,11 +298,18 @@ const Landing = () => {
             (champion) => champion.number === Number(selectedOption5),
           ).champion
         }`);
+    setChatCompletion(chatCompletion);
+    const messageContent = chatCompletion.choices[0].message.content;
+    setGptMessage(messageContent);
+    console.log(messageContent);
+  }, [setChatCompletion, championsWithNumbers, setGptMessage]);
 
-    console.log(chatCompletion.choices[0].message.content);
-    setChatCompletion(chatCompletion.choices[0].message.content);
-    setIsLoading(false);
-  };
+  useEffect(() => {
+    if (gptMessage !== '') {
+      setIsLoading(false);
+    }
+  }, [gptMessage, setIsLoading]);
+
   return (
     <Body>
       <img src={Back} alt="backgorund" style={{ marginTop: '-50px' }} />
@@ -422,7 +432,7 @@ const Landing = () => {
         </Team2>
         <TestButton onClick={called}>AI 경기 승률 예측 및 조합 평가</TestButton>
         <Result>
-          <Gpt>{isLoading ? "로딩 중...." : chatCompletion?.choices[0]?.message?.content}</Gpt>
+          <Gpt>{isLoading ? '로딩 중....' : gptMessage}</Gpt>
         </Result>
       </Back2>
     </Body>

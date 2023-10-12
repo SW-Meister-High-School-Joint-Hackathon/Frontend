@@ -10,7 +10,7 @@ const Chart4 = () => {
     blueKillCount: 0,
     redKillCount: 0,
   });
-  const [loading, setLoading] = useState(true);
+  const [setLoading] = useState(true);
 
   useEffect(() => {
     // GET 요청 보내기
@@ -34,7 +34,11 @@ const Chart4 = () => {
         </Title>
         <Text>각 플레이 팀의 중요 몬스터 킬 수를 나타냅니다.</Text>
         <DIV>
-          <BarChart labels={["blue", "red"]} pdata={[data.blueKillCount, data.redKillCount]} color={["#227BE2","#F50564"]}/>
+          <BarChart
+            labels={['blue', 'red']}
+            pdata={[data.blueKillCount, data.redKillCount]}
+            color={['#227BE2', '#F50564']}
+          />
         </DIV>
         <p>blue: {data.blueKillSpecific.map((killCount, index) => (killCount + ", "))}</p>
         <p>red: {data.redKillSpecific}</p>
