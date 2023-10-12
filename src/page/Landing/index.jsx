@@ -132,8 +132,8 @@ const Landing = () => {
   const [selectedOption8, setSelectedOption8] = useState('');
   const [selectedOption9, setSelectedOption9] = useState('');
   const [selectedOption10, setSelectedOption10] = useState('');
-  const [time1, setTime1] = useState("");
-  const [time2, setTime2] = useState("");
+  const [time1, setTime1] = useState('');
+  const [time2, setTime2] = useState('');
   const [gptMessage, setGptMessage] = useState('');
 
   // 선택 옵션의 변경을 처리하는 핸들러 함수
@@ -197,11 +197,11 @@ const Landing = () => {
   const [towers, setTowers] = useState({});
   const [inhibitor, setInhibitor] = useState({});
   const [mon, setMon] = useState({});
-  
+
   async function tower() {
     const milliseconds = (time1 * 60 + time2) * 10; // 초 단위의 시간을 밀리초 단위로 변환
-      //응답 성공
-      axios
+    //응답 성공
+    axios
       .get(`https://daitda.jeongho.dev/data/tower?timeStamp=${milliseconds}`)
       .then((response) => {
         // 서버로부터 받은 데이터를 처리
@@ -211,8 +211,10 @@ const Landing = () => {
         console.error('GET 요청 중 오류 발생:', error);
       });
 
-      axios
-      .get(`https://daitda.jeongho.dev/data/inhibitor?timeStamp=${milliseconds}`)
+    axios
+      .get(
+        `https://daitda.jeongho.dev/data/inhibitor?timeStamp=${milliseconds}`,
+      )
       .then((response) => {
         // 서버로부터 받은 데이터를 처리
         setInhibitor(response.data);
@@ -221,7 +223,7 @@ const Landing = () => {
         console.error('GET 요청 중 오류 발생:', error);
       });
 
-      axios
+    axios
       .get(`https://daitda.jeongho.dev/data/monster?timeStamp=${milliseconds}`)
       .then((response) => {
         // 서버로부터 받은 데이터를 처리
@@ -238,14 +240,16 @@ const Landing = () => {
     //    apiKey: await getOpenAiToken(),
     //  };
 
-    axios.post("http://52.78.216.172:5001/match/prediction", {
-      blueTeams: [1, 10, -1, 12, 13],
-      redTeams: [2, 4 ,5, 9, 11]
+    axios
+      .post('http://52.78.216.172:5001/match/prediction', {
+        blueTeams: [1, 10, -1, 12, 13],
+        redTeams: [2, 4, 5, 9, 11],
       })
       .then(function (response) {
         setModel(response.data);
         console.log(response.data);
-      }).catch(function (error) {
+      })
+      .catch(function (error) {
         console.error('GET 요청 중 오류 발생:', error);
       });
 
@@ -347,38 +351,58 @@ const Landing = () => {
           position: 'relative',
         }}
       />
-      <Title style={{marginTop: "200px"}}>🦾 경기 전체 한 눈에 보기</Title>
+      <Title style={{ marginTop: '900px' }}>🦾 경기 전체 한 눈에 보기</Title>
       <Back3>
         <Gro>
-          <Time type="text" onChange={(e)=>(setTime1(e.target.value))} placeholder="분"></Time>
-          <Time type="text" onChange={(e)=>(setTime2(e.target.value))} placeholder="초"></Time>
+          <Time
+            type="text"
+            onChange={(e) => setTime1(e.target.value)}
+            placeholder="분"
+          ></Time>
+          <Time
+            type="text"
+            onChange={(e) => setTime2(e.target.value)}
+            placeholder="초"
+          ></Time>
           <Tbutton onClick={() => tower()}>시간대 별 상황보기</Tbutton>
         </Gro>
         <Back4>
           <div>
             <p>타워</p>
             <div>
-              <Sback style={{background : "#217BE2"}}>{towers.blueDestroyTowerCount}</Sback>
-              <Sback style={{background : "#F50565"}}>{towers.redDestroyTowerCount}</Sback>
+              <Sback style={{ background: '#217BE2' }}>
+                {towers.blueDestroyTowerCount}
+              </Sback>
+              <Sback style={{ background: '#F50565' }}>
+                {towers.redDestroyTowerCount}
+              </Sback>
             </div>
           </div>
           <div>
             <p>억제기</p>
             <div>
-              <Sback style={{background : "#217BE2"}}>{inhibitor.blueKillCountInhibitorBuilding}</Sback>
-              <Sback style={{background : "#F50565"}}>{inhibitor.redKillCountInhibitorBuilding}</Sback>
+              <Sback style={{ background: '#217BE2' }}>
+                {inhibitor.blueKillCountInhibitorBuilding}
+              </Sback>
+              <Sback style={{ background: '#F50565' }}>
+                {inhibitor.redKillCountInhibitorBuilding}
+              </Sback>
             </div>
           </div>
           <div>
             <p>중요 몬스터 킬</p>
             <div>
-              <Sback style={{background : "#217BE2"}}>{mon.blueKillCount}</Sback>
-              <Sback style={{background : "#F50565"}}>{mon.redKillCount}</Sback>
+              <Sback style={{ background: '#217BE2' }}>
+                {mon.blueKillCount}
+              </Sback>
+              <Sback style={{ background: '#F50565' }}>
+                {mon.redKillCount}
+              </Sback>
             </div>
           </div>
         </Back4>
       </Back3>
-      <div style={{ marginTop: '50px' }}>
+      <div style={{ marginTop: '220px' }}>
         <div style={{ display: 'flex' }}>
           <Title>🦾 AI를 이용한 팀별 조합분석 </Title>
         </div>
@@ -479,8 +503,14 @@ const Landing = () => {
           </TestButton>
           <Result>
             {/* <img src={AI} alt="error" style={{ marginTop: '3%' }} /> */}
-            <Gpt>{isLoading ? '버튼을 누르고 기다리세요' : `예측 결과, 해당 경기의 결과는 ${model?.win_percent+rand}%의 승리로 예측됩니다.`}</Gpt>
-            <Gpt>{isLoading ? "" : gptMessage}</Gpt>
+            <Gpt>
+              {isLoading
+                ? '버튼을 누르고 기다리세요'
+                : `예측 결과, 해당 경기의 결과는 ${
+                    model?.win_percent + rand
+                  }%의 승리로 예측됩니다.`}
+            </Gpt>
+            <Gpt>{isLoading ? '' : gptMessage}</Gpt>
             {/* <Gpt>{model?.accuracy}</Gpt>
             <Gpt>{model?.winner}</Gpt> */}
           </Result>
@@ -620,10 +650,10 @@ const Gpt = styled.p`
 const Time = styled.input`
   width: 160px;
   height: 80px;
-
+  padding-left: 20px;
   color: black;
   font-size: 24px;
-`
+`;
 
 const Tbutton = styled.button`
   width: 160px;
@@ -659,7 +689,7 @@ const Back4 = styled.div`
   height: 280px;
   flex-shrink: 0;
 
-  border-radius: 10px;  
+  border-radius: 10px;
   background: #071314;
 
   display: flex;
@@ -667,8 +697,8 @@ const Back4 = styled.div`
   justify-content: center;
   align-items: center;
   gap: 40px;
-  > div{
-    color: #FFF;
+  > div {
+    color: #fff;
     text-align: center;
     font-family: Open Sans;
     font-size: 30px;
@@ -677,10 +707,10 @@ const Back4 = styled.div`
     line-height: 100%; /* 60px */
     letter-spacing: -0.6px;
 
-    > p{
+    > p {
       margin-bottom: 10px;
     }
-    > div{
+    > div {
       gap: 15px;
       display: flex;
       flex-direction: row;
@@ -698,7 +728,7 @@ const Sback = styled.div`
   justify-content: center;
   align-items: center;
 
-  color: #FFF;
+  color: #fff;
   text-align: center;
   font-family: Open Sans;
   font-size: 60px;
